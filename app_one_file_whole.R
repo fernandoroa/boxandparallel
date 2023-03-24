@@ -45,20 +45,20 @@ second_module_ui <- function(id) {
 
 second_module_server <- function(id, first_vars) {
   moduleServer(id, function(input, output, session) {
-    
+
     output$output_2 <- renderText({
       cl <- parallel::makeCluster(2)
       doParallel::registerDoParallel(cl)
 
-    myset <- c(first_vars(), input$input_2)
+      myset <- c(first_vars(), input$input_2)
 
-    result <- foreach(i = myset, .combine = 'c') %dopar% {
-      sqrt(i)
-    }
+      result <- foreach(i = myset, .combine = 'c') %dopar% {
+        sqrt(i)
+      }
 
-    parallel::stopCluster(cl)
+      parallel::stopCluster(cl)
 
-    paste("sqrt(s):", result, collapse = ", ")
+      paste("sqrt(s):", result, collapse = ", ")
     })
   }
 )}
