@@ -1,6 +1,6 @@
 # boxandparallel
 
-The app without box can be run manually from app_one_file_whole.R, Ctrl + A Ctrl [Enter]
+The app without box can be run manually from `app_one_file_whole.R`, <kbd>Ctrl</kbd> + <kbd>A</kbd>     <kbd>Ctrl</kbd> <kbd>Enter</kbd>
 
 The several files app can run with
 
