@@ -1,9 +1,5 @@
 # Define the app
 box::use(
-  shiny[...],
-  shinydashboard[...],
-  doParallel[...],
-  foreach[...],
   ./first_module,
   ./second_module
 )

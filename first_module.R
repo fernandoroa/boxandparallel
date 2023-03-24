@@ -1,8 +1,6 @@
 box::use(
   shiny[...],
   shinydashboard[...],
-  doParallel[...],
-  foreach[...],
 )
 #' @export
 ui <- function(id) {

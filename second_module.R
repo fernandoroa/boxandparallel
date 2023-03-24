@@ -23,24 +23,24 @@ ui <- function(id) {
 #' @export
 server <- function(id, first_vars) {
   moduleServer(id, function(input, output, session) {
-    
+
     output$output_2 <- renderText({
-      cl <- parallel::makeCluster(2)
-      doParallel::registerDoParallel(cl)
+        cl <- parallel::makeCluster(2)
+        doParallel::registerDoParallel(cl)
 
-    myset <- c(first_vars(), input$input_2)
-    go_parallel <- FALSE
-    if (go_parallel) {
-      result <- foreach(i = myset, .combine = 'c') %dopar% {
-        run_sqrt(i)
-      }
-    } else {
-      result <- run_sqrt(myset)
-    }
+        myset <- c(first_vars(), input$input_2)
+        go_parallel <- FALSE
+        if (go_parallel) {
+            result <- foreach(i = myset, .combine = 'c') %dopar% {
+                run_sqrt(i)
+            }
+        } else {
+            result <- run_sqrt(myset)
+        }
 
-    parallel::stopCluster(cl)
+        parallel::stopCluster(cl)
 
-    paste("sqrt(s):", result, collapse = ", ")
+        paste("sqrt(s):", result, collapse = ", ")
     })
   }
 )}
