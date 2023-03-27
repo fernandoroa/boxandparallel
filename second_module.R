@@ -4,7 +4,7 @@ box::use(
   parallel,
   dp = doParallel,
   foreach[foreach, `%dopar%`],
-  ./first_module
+  ./first_module[...]
 )
 #' @export
 ui <- function(id) {
@@ -30,11 +30,11 @@ server <- function(id, first_vars) {
         dp$registerDoParallel(cl)
 
         myset <- c(first_vars(), input$input_2)
-        go_parallel <- FALSE
-        # parallel$clusterExport(cl, "first_module$run_sqrt")
+        go_parallel <- TRUE
+        parallel$clusterExport(cl, "run_sqrt", envir = environment())
         if (go_parallel) {
             result <- foreach(i = myset, .combine = 'c') %dopar% {
-                first_module$run_sqrt(i)
+                run_sqrt(i)
             }
         } else {
             result <- first_module$run_sqrt(myset)
