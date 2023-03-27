@@ -13,4 +13,4 @@ after changes, run
 rm(list = ls(box:::loaded_mods), envir = box:::loaded_mods) 
 ```
 
-Modify the `go_parallel` constant to run the parallel code, in `second_module.R`
+As this is currently solved, the `go_parallel` constant is `TRUE`, it runs the parallel code, in `second_module.R`
