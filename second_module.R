@@ -1,9 +1,10 @@
 box::use(
   shiny[...],
   shinydashboard[...],
-  doParallel[...],
-  foreach[...],
-  ./first_module[...]
+  parallel,
+  dp = doParallel,
+  foreach[foreach, `%dopar%`],
+  ./first_module
 )
 #' @export
 ui <- function(id) {
@@ -26,16 +27,17 @@ server <- function(id, first_vars) {
 
     output$output_2 <- renderText({
         cl <- parallel::makeCluster(2)
-        doParallel::registerDoParallel(cl)
+        dp$registerDoParallel(cl)
 
         myset <- c(first_vars(), input$input_2)
         go_parallel <- FALSE
+        # parallel$clusterExport(cl, "first_module$run_sqrt")
         if (go_parallel) {
             result <- foreach(i = myset, .combine = 'c') %dopar% {
-                run_sqrt(i)
+                first_module$run_sqrt(i)
             }
         } else {
-            result <- run_sqrt(myset)
+            result <- first_module$run_sqrt(myset)
         }
 
         parallel::stopCluster(cl)
