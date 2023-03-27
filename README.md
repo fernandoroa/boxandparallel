@@ -14,3 +14,7 @@ rm(list = ls(box:::loaded_mods), envir = box:::loaded_mods)
 ```
 
 As this is currently solved, the `go_parallel` constant is `TRUE`, it runs the parallel code, in `second_module.R`
+
+`minex` folder has box but not an app
+
+`app_in_one_file` folder does not have box implemented
